@@ -1,5 +1,5 @@
-﻿$javuApp.config(['$routeProvider',function ($routeProvider) {
-
+﻿
+$javuApp.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/pages/templates/dashboard.html'
