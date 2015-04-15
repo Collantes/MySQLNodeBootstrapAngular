@@ -49,7 +49,20 @@ module.exports = {
            
         });
     }
-    
+    , searchUsers: function(criteria, searchDeleted,pageIndex,pageSize,callback){
+        var cmd = mysql.createCommand('users_search');
+        cmd.addParam('_criteria', criteria);
+        cmd.addParam('_showDeleted', searchDeleted?1:0);
+        cmd.addParam('_page', pageIndex);
+        cmd.addParam('_pageSize', pageSize);
+        cmd.getDataSet(function (err, data) {
+            if (err)
+                callback(err);
+            else if (data)
+                callback(null, data[0])
+
+        });
+    }
     ,registerUser: function (user, loginMethod, callback) {
 
         if(!(user.username && user.password))

@@ -13,13 +13,16 @@ function createAPI(app) {
 
     handler.get = function (req,res){
         users.getUser(req.body.email, req.body.password, function (err, user) {
-            if ( err )
-                errorResponse.sendAuthenticationError( res, "error while retrieve user", err );
-            else if ( user == null )
-                errorResponse.sendAuthorizationError( res, "user not found", null );
-             else
+            if (err)
+                errorResponse.sendAuthenticationError(res, "error while retrieve user", err);
+            else if (user == null)
+                errorResponse.sendAuthorizationError(res, "user not found", null);
+            else {
                 delete user.password;
-                res.send( user ); //success
+                res.send(user); //success
+            }
+
+
         });
 
     };

@@ -210,4 +210,4 @@ mongoCol.prototype = {
     }
 };
 
-module.exports = mongoDA;
+module.exports = mongoCol;

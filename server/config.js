@@ -11,12 +11,13 @@ var environments = {
             {route:'/', path:'/../client/admin/'}
             ,{route:'/scripts',path:'/../client/_shared/scripts/'}
             ,{route:'/styles', path:'/../client/_shared/styles/'}
+            ,{route:'/pages', path:'/../client/_shared/pages/'}
             ,{route:'/images', path:'/../client/_shared/images/'}
         ]
-        , jsMinifyFolders:[
-            {path:'/../client/_shared/scripts/',minifySubFolder:true}
-            ,{path:'/../client/controlPanel/scripts/',minifySubFolder:true}
-            ,{path:'/../client/controlPanel/pages/controllers/',minifySubFolder:true}
+        ,jsMinifyFolders:[
+            //{path:'../client/_shared/scripts/',minifySubFolder:true}
+            //,{path:'../client/controlPanel/scripts/',minifySubFolder:true}
+            {path:'../client/controlPanel/pages/controllers/',minifySubFolder:true}
         ]
         ,mysqlConfig : {
             host : '127.0.0.1'
@@ -56,6 +57,7 @@ var environments = {
             {route:'/', path:'/../client/controlPanel/'}
             ,{route:'/scripts',path:'/../client/_shared/scripts/'}
             ,{route:'/styles', path:'/../client/_shared/styles/'}
+            ,{route:'/pages', path:'/../client/_shared/pages/'}
             ,{route:'/images', path:'/../client/_shared/images/'}
         ]
         ,jsMinifyFolders:[
@@ -98,7 +100,7 @@ var environments = {
     }
 };
 
-var config = process.argv[2] || environments['devControlPanel'];
+var config = process.argv[2] || environments['devAdmin'];
 
 /*
 if (config) {
