@@ -14,11 +14,12 @@ function createAPI(app) {
 
     handler.get = function (req,res){
         var p = req.query;
-        users.searchUsers(p.criteria, false, p.pageIndex, p.pageSize ,function (err, users) {
+        users.searchUsers(p.criteria, false, p.pageIndex, p.pageSize ,function (err, results) {
             if ( err )
                 errorResponse.sendError(res, err,'a problem occurred with search' );
-             else
-                res.send( users ); //success
+             else {
+                res.send(results); //success
+            }
         });
 
     };

@@ -29,20 +29,19 @@
             </tbody>
         </table>
         <nav class="pull-right">
-            <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
+
+            <ul class="pagination" ng-show="showPrevious || showNext">
+                <li ng-show="showPrevious">
+                    <a href ng-click="previous()" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Previous</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
+                <li class="active">
+                    <span  aria-hidden="true">page {{currentPage+1}}</span>
+                </li>
+                <li ng-show="showNext" >
+                    <a href ng-click="next()" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
                     </a>
                 </li>
             </ul>

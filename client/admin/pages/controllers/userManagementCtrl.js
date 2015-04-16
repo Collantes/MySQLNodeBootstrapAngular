@@ -6,19 +6,34 @@ $javuApp.controller('userManagementCrl',['$scope','$http'
 
         $scope.criteria='';
 
-        var fnSearch = function (criteria) {
-            $http.get('/api/users/search', {params: {criteria: criteria, pageIndex: 0, pageSize: 20}}
-            ).success(function (users) {
-                    $scope.users = users;
+        $scope.currentPage=0;
+        var fnSearch = function (criteria,pageIndex) {
 
+            var pageSize = 20;
+            $scope.currentPage=pageIndex;
+            $http.get('/api/users/search', {params: {criteria: criteria, pageIndex: pageIndex, pageSize: pageSize}}
+            ).success(function (results) {
+                    $scope.showPrevious = pageIndex > 0;
+                    $scope.showNext = results.hasMorePages;
+                    $scope.users = results.users;
                 });
         };
-        fnSearch('');
+        fnSearch('',$scope.currentPage);
+
+
         var tmr;
-        $scope.$watch('criteria', function(newValue) {
+        $scope.$watch('criteria', function(newValue, oldValue) {
+            if(newValue == oldValue) return;
             if(tmr) clearTimeout(tmr);
-            tmr=setTimeout(function(){fnSearch(newValue);},1000);
+            tmr=setTimeout(function(){fnSearch(newValue,0);},1000);
         });
 
+        $scope.next= function() {
+            fnSearch($scope.criteria,$scope.currentPage+1);
+        };
+
+        $scope.previous= function() {
+            fnSearch($scope.criteria,$scope.currentPage-1);
+        };
 
     }]);

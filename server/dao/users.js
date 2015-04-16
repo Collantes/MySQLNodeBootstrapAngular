@@ -56,10 +56,19 @@ module.exports = {
         cmd.addParam('_page', pageIndex);
         cmd.addParam('_pageSize', pageSize);
         cmd.getDataSet(function (err, data) {
+            // results add 1 more row to page size to indicate there is a next page
             if (err)
                 callback(err);
-            else if (data)
-                callback(null, data[0])
+            else if (data) {
+
+                var doc ={pageIndex: pageIndex, users:data[0]};
+                if(doc.users.length > pageSize) {
+                    doc.hasMorePages = true;
+                    doc.users.splice(pageSize);
+                }
+
+                callback(null, doc);
+            }
 
         });
     }
