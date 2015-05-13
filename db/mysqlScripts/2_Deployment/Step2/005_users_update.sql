@@ -8,8 +8,15 @@ CREATE PROCEDURE `users_update`(
 )
 begin
 	update users
-		set firstName = _firstName, lastName = _lastName, address = _address, city = _city,
-		state = _state, zip = _zip, isActive = ifNull(_isActive,isActive), lastUpdatedOn = UTC_TIMESTAMP(), lastUpdatedBy = lastUpdatedBy
+		set firstName = _firstName
+		, lastName = _lastName
+		, address = _address
+		, city = _city
+		, state = _state
+		, zip = _zip
+		, isActive = ifNull(_isActive,isActive)
+		, lastUpdatedOn = UTC_TIMESTAMP()
+		, lastUpdatedBy = lastUpdatedBy
 		where userToken = _userToken;
 	if ROW_COUNT() = 0 then
 		SIGNAL SQLSTATE '45000'

@@ -24,7 +24,7 @@
                 <td>{{u.userId}}</td>
                 <td>{{u.firstName}} {{u.lastName}}</td>
                 <td>{{u.username}}</td>
-                <td><input type="checkbox" ng-checked="u.isActive" /></td>
+                <td><input type="checkbox" ng-checked="u.isActive" ng-click="changeActiveState(u)" /></td>
             </tr>
             </tbody>
         </table>

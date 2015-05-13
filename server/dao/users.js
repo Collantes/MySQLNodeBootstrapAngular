@@ -177,11 +177,6 @@ module.exports = {
         cmd.addParam("_isActive", user.isActive);
         cmd.addParam("_lastUpdatedBy", user.lastUpdatedBy);
 
-        cmd.getDataObject(function (err, data) {
-            if (err)
-                callback(err);
-            else
-                callback(null, user);
-        });
+        cmd.getDataObject(callback);
     }
-}
+};

@@ -36,4 +36,18 @@ $javuApp.controller('userManagementCrl',['$scope','$http'
             fnSearch($scope.criteria,$scope.currentPage-1);
         };
 
+        $scope.changeActiveState = function(user){
+            if(user.isActive)
+            if(!confirm('Are you sure you want to deactivate ' + user.firstName + ' ' + user.lastName + '?') )
+                return;
+            user.isActive = !user.isActive;
+            $http.post('/api/users/user/update/',{user:user})
+                .success(function () {
+                    alert('done');
+                }
+            ).error(function(){
+                    alert('fail');
+                });
+
+        }
     }]);

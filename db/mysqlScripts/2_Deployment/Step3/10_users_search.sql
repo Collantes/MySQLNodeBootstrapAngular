@@ -9,7 +9,7 @@ BEGIN
 	set pageSizePlusOne = _pageSize + 1;
 	set wildCri =CONCAT('%',_criteria,'%');
 	
-	Select userId, username, isActive,firstName, lastName,createdOn, lastUpdatedOn, deletedOn
+	Select userId, username, isActive,firstName, lastName,userToken,createdOn, lastUpdatedOn, deletedOn
 	From  users
 	Where 
 	(_showDeleted =1 or deletedOn is null)
