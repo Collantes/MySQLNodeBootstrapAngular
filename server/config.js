@@ -55,10 +55,7 @@ var environments = {
         ,module:"controlPanel"
         ,staticContent: [
             {route:'/', path:'/../client/controlPanel/'}
-            ,{route:'/scripts',path:'/../client/_shared/scripts/'}
-            ,{route:'/styles', path:'/../client/_shared/styles/'}
-            ,{route:'/pages', path:'/../client/_shared/pages/'}
-            ,{route:'/images', path:'/../client/_shared/images/'}
+            ,{route:'/',path:'/../client/_shared/'}
         ]
         ,jsMinifyFolders:[
             //{path:'../client/_shared/scripts/',minifySubFolder:true}
@@ -100,7 +97,7 @@ var environments = {
     }
 };
 
-var config = process.argv[2] || environments['devAdmin'];
+var config = process.argv[2] || environments['devControlPanel'];
 
 /*
 if (config) {

@@ -34,20 +34,28 @@
 
             <!--logo end-->
             <div class="nav notify-row" id="top_menu" style="margin-top:0 !important;" >
-                <h1 id="pageTitle"></h1>
+                <h1 id="pageTitle">Admin</h1>
             </div>
-            <div class="top-nav clearfix">
-                <!--search & user info start-->
-                <ul class="nav pull-right top-menu" ng-controller="profileCtrl">
-                    <!-- user login dropdown start-->
-                    <li id="ddlUserProfile" class="dropdown" >
-                        <a id="aProfileMenu" data-toggle="dropdown" class="dropdown-toggle" href="" aria-expanded="true">
+            <div class="top-nav clearfix" ng-controller="homePageProfileCtrl">
+                <ul class="nav pull-right top-menu" ng-show="!user.firstName" >
+                    <li>
+                        <a href="#/register" aria-expanded="true">
                             <img alt="" src="images/avatar1_small.jpg">
-                            <span id="currentUserName">{{user.username}}</span>
+                            <span>Register</span>
+                        </a>
+                    </li>
+                </ul>
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu"  ng-show="user.firstName" >
+                    <!-- user login dropdown start-->
+                    <li id="ddlUserProfile" dropdown >
+                        <a id="aProfileMenu" data-toggle="dropdown" dropdown-toggle href="" aria-expanded="true">
+                            <img alt="" src="images/avatar1_small.jpg">
+                            <span>{{user.firstName}}</span>
                             <b class="caret"></b>
                         </a>
                         <ul id="profileMenuItems" class="dropdown-menu extended logout" role="menu" aria-labelledby="aProfileMenu">
-                            <li><a role="menuitem" href="#profile" tabindex="-1">Profile</a></li>
+                            <li><a role="menuitem" href="#/profile" tabindex="-1">Profile</a></li>
                             <li><a id="profileLogout" role="menuitem" tabindex="-1" href="" ng-click="logout()" >Log Out</a></li>
                         </ul>
                     </li>

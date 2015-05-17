@@ -1,17 +1,13 @@
-﻿$javuApp.service('authManager', ['$http', function ($http) {
+﻿$javuApp.service('authManager', ['$http','$rootScope', function ($http,$rootScope) {
     var authManager ={
         _currentUser: null,
-        currentUserChangedListeners:[],
-        _notifyListenersAboutChange: function(){
-          for(fn in this.currentUserChangedListeners)
-            fn(this._currentUser);
-        },
         attemptAutoLogin: function () {
             var user = this.getCurrentUser();
             if (user)
                 this._loggedIn(user);
             return user;
-        }, getCurrentUser: function () {
+        },
+        getCurrentUser: function () {
             if (this._currentUser)
                 return this._currentUser;
             else if (localStorage.user) {
@@ -50,7 +46,8 @@
                 localStorage.removeItem('user');
 
             authManager._currentUser = currentUser;
-            authManager._notifyListenersAboutChange();
+
+            $rootScope.$broadcast('userChanged',user);
         },
         isUserLoggedIn: function () {
             return (this.getCurrentUser() != null);
@@ -67,10 +64,12 @@
                 //api.call( 1, 'users/logout', { token: authManager._currentUser.userToken });
                 this.setCurrentUser(null);
             }
+            localStorage.clear();
             this.logoutHandler();
         },
         logoutHandler: function () {
-            localStorage.clear();
+
+            window.location.hash='/login';
         } ,
         resetPassword: function (UserTokenname, callback) {
         }
