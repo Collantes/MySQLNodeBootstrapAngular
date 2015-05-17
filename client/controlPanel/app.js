@@ -43,6 +43,3 @@ $javuApp.controller('menuCtrl', ['$scope', function ($scope) {
         , {title: 'Page1', hash: 'page1', className: ''}
     ];
 }]);
-
-
-
